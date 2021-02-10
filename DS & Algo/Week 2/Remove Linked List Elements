@@ -14,7 +14,8 @@ public:
         
        
         ListNode *NewList = new ListNode();
-        ListNode *headcopy = NewList; //To store the header to new created list
+        ListNode *headcopy = NewList;
+        
         while(head != NULL)
         {
                
@@ -22,12 +23,11 @@ public:
             {
                 head = head-> next;
              }
-            else if(head -> val != val) 
-                {
-                
-            NewList -> val = head -> val;
-            NewList -> next = head -> next;
-            head = head -> next;    }
+            else 
+                {NewList -> val = head -> val;
+                NewList -> next = head -> next;
+                head = head -> next;
+                NewList = NewList -> next;}
         }
         return headcopy;
     }
