@@ -22,6 +22,7 @@ public:
             if(head -> val == val)
             {
                 head = head-> next;
+                NewList -> next = NULL;
              }
             else 
                 {NewList -> val = head -> val;
