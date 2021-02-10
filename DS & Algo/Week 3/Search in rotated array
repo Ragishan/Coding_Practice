@@ -9,8 +9,9 @@ public:
             if(nums[i] == target)
                 index = i;
         }
-        if (index!= -2)
-            return index;
-        else return -1;
+        if (index!= -2){
+            return index;}
+        else 
+        {return -1;}
     }
 };
