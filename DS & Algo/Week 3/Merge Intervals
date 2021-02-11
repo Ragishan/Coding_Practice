@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        
+        vector<vector<int>> vec =intervals;
+        int size = intervals.size();
+        int i=0, j=0;
+        cout<<size;
+        for(i=0; i<size; i++)
+        {
+            for(j=1; j<=2;j++)
+            {
+                if(intervals[i][j] < intervals[j][i] || intervals[i][j] == intervals[j][i])
+                    vec[i].push_back(i);
+                    vec[j].push_back(i);      
+            }
+        }
+        return vec;
+    }
+    
+};
