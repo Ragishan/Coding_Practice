@@ -1,0 +1,28 @@
+class MinStack {
+public:
+    
+    stack<int> mainstack;
+    stack<int> minstack;
+   
+    MinStack() {
+        //nothing here since this funtion is nothing but a dummy
+    }
+    
+    void push(int x) {
+        
+        mainstack.push(x); // -2 is pushed onto the mainstack || 0 is pushed onto mainstack || push -3 onto mainstack
+        if(minstack.empty() || x <= minstack.top())
+        minstack.push(x); //since minstack is empty right now we push -2 onto minstack || since minstack is not empty nor is 0 less than -2 therefore no call to minstack and top value here remains -2 || since -3 is less than -2, -3 is pushed on top of minstack, new min value is -3
+    }
+    int getMin() {
+        return minstack.top(); //return -3 || returns the top value on minstack ie -2
+    }
+    void pop() {
+        if(!mainstack.empty() && !minstack.empty() && minstack.top() == mainstack.top())
+            minstack.pop(); // pops -3 off minstack
+             mainstack.pop(); //pops -3 of mainstack
+    }
+    int top() {
+        return mainstack.top(); // return -2 which is on top of both min and main stacks
+    }    
+};
