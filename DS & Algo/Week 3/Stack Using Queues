@@ -1,0 +1,53 @@
+class MyStack {
+public:
+   
+   /** Initialize your data structure here. */
+    queue<int> mainq;
+    queue<int> secq;
+    int el;
+    
+    /*Algo 1 - 1 take two queues
+               2 Push x to secondary queue
+               3 Copy all the elements of main queue to secondary queue (until empty)
+               4 Swap Queues */
+    
+    MyStack() {
+        }
+   
+    /** Push element x onto stack. */
+    void push(int x) {
+        secq.push(x);
+        
+        while(!mainq.empty())
+        {
+            secq.push(mainq.front());
+            mainq.pop();
+        }
+        
+        queue<int> Q;
+        Q = secq;
+        secq = mainq;
+        mainq = Q;
+            
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    int pop() {
+        el = mainq.front();
+        mainq.pop();
+        return el;
+        
+    }
+    
+    /** Get the top element. */
+    int top() {
+            return mainq.front();
+        
+    }
+    
+    /** Returns whether the stack is empty. */
+    bool empty() {
+        return(mainq.empty());
+    }
+};
+
