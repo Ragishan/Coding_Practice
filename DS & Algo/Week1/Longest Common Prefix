@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        
+    int size=strs.size();
+        
+        if(size==0)
+        {return "";}
+               
+        string str=""; //to store the longest prefix
+        sort(begin(strs),end(strs)); //arranges the strings alphabetically. That is why we compare sting at the 0th index and the last index.
+        
+        string a=strs[0];
+        string b=strs[size-1];
+        
+        for(int i=0;i<a.size();i++) 
+        {
+            if(a[i]==b[i])
+            {str=str + a[i];} //store the matching characters 
+            else
+            {break;}
+        }
+        return str;
+}
+};
