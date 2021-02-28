@@ -1,43 +1,41 @@
-// Some exception error that i am unable to resolve but the overall logic is correct. 
-
+//failing for certain testcases
 class Solution {
 public:
     bool isPalindrome(string s) {
      
         int size = s.size();
-        int sizescopy;
-        string scopy;
-        string sorg;
+        
         string scopyfinal;
+        string scopy;
+        
+        
         int i; 
+        
         
         for (i=0; i!=size; i++) 
         {
-            if(s.at(i) == ':' || s.at(i) == ';' || s.at(i) == '@' || s.at(i) == '#' || s.at(i) == '$' || s.at(i) == '%' || s.at(i) == '&' || s.at(i) == '*' )
+            if(s.at(i) == '}' ||s.at(i) == '{' ||s.at(i) == ']' ||s.at(i) == '[' || s.at(i) == '_' || s.at(i) == '.' || s.at(i) == ',' || s.at(i) == ' ' || s.at(i) == ':' || s.at(i) == ';' || s.at(i) == '@' || s.at(i) == '#' || s.at(i) == '$' || s.at(i) == '%' || s.at(i) == '&' || s.at(i) == '*' )
             {continue;}
         
-            scopy.push_back(s[i]);
+            scopy.push_back(s.at(i));
         
-            sorg.push_back(s[i]);
         }
         
-        cout<<"Scopy before reversal   "<<scopy<<endl;
-        reverse(scopy.begin(),scopy.end());
-        cout<<"Scopy after reversal   "<<scopy<<endl;
-        cout<<"Sorg string after removing special chars   "<<sorg<<endl;
         
-        sizescopy = scopy.size();
-        cout<<"Scopy Size"<<sizescopy<<endl;
-        //scopyfinal =sorg;
-       for(i=sizescopy; i!=0; i--)
-       {
-           scopyfinal.push_back(scopy.at(i));
-       }
         
-        cout<<"Scopyfinal after replacement of chars   "<<scopyfinal<<endl;
+        for(i=0 ; i<scopy.size();i++)
+        {
+            
+            scopyfinal.push_back(tolower(scopy[i]));
+        }
         
-        if(sorg.compare(scopyfinal)!=0)
+        scopy = scopyfinal;
+        reverse(scopyfinal.begin(),scopyfinal.end());
+        
+        
+     
+        if(scopy.compare(scopyfinal)!=0)
         {return false;}
         else{return true;}
     }
-};  
+};
