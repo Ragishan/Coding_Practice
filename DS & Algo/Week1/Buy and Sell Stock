@@ -1,0 +1,43 @@
+//This is working for all TESTCASES when you enter them manually, but somehow on submitting it, it throws an error - ADDRESS SANITIZER: DEADLY SIGNAL
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int low, high, i=0;
+        int size = prices.size();
+        int indexoflow;
+        
+       // cout<<size;
+        
+        if(size==0)
+        {return 0;}
+        
+        low = prices[i];
+        //cout<<low;
+        
+        for(i; i<size; i++)
+        {
+            if(prices[i] < low)
+            {
+             indexoflow = i;
+             low = prices[i];
+            }
+        }
+        
+       // cout << indexoflow << low;
+        high = prices[indexoflow];
+       for(i=indexoflow;i<size;i++)
+       {
+           if(prices[i] > high)
+           {
+               high = prices[i];
+           }
+       }
+        if(high <= low || indexoflow == prices.size())
+        {return 0;}
+        else{return high - low;}
+        
+       // return 0;
+    }
+    
+};
