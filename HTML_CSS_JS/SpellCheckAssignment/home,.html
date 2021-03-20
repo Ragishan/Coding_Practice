@@ -26,7 +26,8 @@
                 let reader=new FileReader();
                 reader.readAsText(file);
                 reader.onload=function(){
-                    document.getElementById("display").textContent=reader.result;
+                  display.value=reader.result;
+                    //document.getElementById("display").textContent=reader.result;
                 }
                 }          
     </script> 
