@@ -47,8 +47,18 @@
     request.send(); //SEND THE REQUEST
 
     request.onload = () =>{
-      let resultobj = JSON.parse(request.response); //parsing the results
-      console.log(resultobj.status);
+      let resultobj = JSON.parse(request.response); //parsing the results 
+    
+      badspellings = [];
+      suggestions = new Object();
+
+
+      for(let i of resultobj.response.errors){
+        badspellings.push(i.bad);
+        suggestions[i.bad]=i.better; 
+      }
+    console.log(badspellings);
+    console.log(suggestions);
     }
     }
     }
