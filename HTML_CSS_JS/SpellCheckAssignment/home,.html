@@ -34,7 +34,25 @@
       function checkspell(){
       if(display.value ==="") 
       {alert("Please select a file first");}
-        }
+        
+    <!--api key VczbWwShCey5yAvx-->
+    
+    chkbut.onclick = ()=>{
+
+    var querytext = document.getElementById("display").value;
+    let URL = "https://api.textgears.com/spelling?key=VczbWwShCey5yAvx&text="   + querytext  + "&language=en-GB";
+
+    let request = new XMLHttpRequest();  //CREATE XMLHTTPREQUEST
+    request.open("GET", URL ); //OPEN A REQUEST
+    request.send(); //SEND THE REQUEST
+
+    request.onload = () =>{
+      let resultobj = JSON.parse(request.response); //parsing the results
+      console.log(resultobj.status);
+    }
+    }
+    }
+
         
     </script> 
    
