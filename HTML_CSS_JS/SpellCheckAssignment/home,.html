@@ -1,90 +1,85 @@
 <html>
-  
-<head> 
-		<title> 
-			Spelling Bee
-		</title> 
-		<link rel="stylesheet" href="css/style.css">
-	</head> 
+  <head>
+    <title>Spelling Bee</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-  
-  <body> 
-    <h1 id="heading"> Spelling Bee</h1>
+  <body>
+    <h1 id="heading">Spelling Bee</h1>
 
     <div id="main">
-    <input type="text" id="display" contenteditable="true">
-    <br/> 
-    <br/>
-    <input id="fileInput" type="file"  onchange="displayfile()">
-    <button type="button" id="chkbut" onclick="checkspell()">Check</button>
-  </div>
+      <input type="text" id="display" contenteditable="true" />
+      <br />
+      <br />
+      <input id="fileInput" type="file" onchange="displayfile()" />
+      <button type="button" id="chkbut" onclick="checkspell()">Check</button>
+    </div>
 
-    <script type="text/javascript"> 
-    
-         function displayfile(){
-                
-                let file=fileInput.files[0];
-                let reader=new FileReader();
-                reader.readAsText(file);
-                reader.onload=function() {
-                  display.value=reader.result;
-                }
-                }     
-                
-      function checkspell(){
-      if(display.value ==="") 
-      {alert("Please select a file first");}
-        
-    <!--api key VczbWwShCey5yAvx-->
-    
-    chkbut.onclick = ()=>{
-
-    var querytext = document.getElementById("display").value;
-    let URL = "https://api.textgears.com/spelling?key=VczbWwShCey5yAvx&text="   + querytext  + "&language=en-GB";
-
-    let request = new XMLHttpRequest();  //CREATE XMLHTTPREQUEST
-    request.open("GET", URL ); //OPEN A REQUEST
-    request.send(); //SEND THE REQUEST
-
-    request.onload = () =>{
-      let resultobj = JSON.parse(request.response); //parsing the results 
-    
-      badspellings = [];
-      suggestions = new Object();
-
-
-      for(let i of resultobj.response.errors){
-        badspellings.push(i.bad);
-        suggestions[i.bad]=i.better; 
+    <script type="text/javascript">
+      // Display the text
+      function displayfile(files) {
+        let file = fileInput.files[0];
+        let reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function () {
+          display.value = reader.result;
+        };
       }
-    console.log(badspellings);
-    console.log(suggestions);
-  
-    let content = display.value;
-    document.getElementById('display').innerHTML = transformContent(content, badspellings)
 
-  function transformContent(content, badspellings){ 
-    
-  let temp = content;
-    alert(temp);
-  for(let z of badspellings ){
-    temp = temp.replace(new RegExp(z, 'ig'), wrapKeywordWithHTML(z))
-    console.log(temp)
-    return temp
-  }
-  }
+      
+      function checkspell() {
+        if (display.value === "") {
+          alert("Please select a file first");
+        }
 
-function wrapKeywordWithHTML(z){
-  return `<span style="font-weight: bold; color: red; font-size: 30px">  ${z}  </span> `
-}
-}
-}
-}
+        chkbut.onclick = () => {
+          var querytext = document.getElementById("display").value;
+          let URL =
+            "https://api.textgears.com/spelling?key=VczbWwShCey5yAvx&text=" +
+            querytext +
+            "&language=en-GB";
 
-        
-    </script> 
-   
+          let request = new XMLHttpRequest(); //CREATE XMLHTTPREQUEST
+          request.open("GET", URL); //OPEN A REQUEST
+          request.send(); //SEND THE REQUEST
+
+          request.onload = () => {
+            let resultobj = JSON.parse(request.response); //parsing the results
+
+            badspellings = [];
+            suggestions = new Object();
+
+            for (let i of resultobj.response.errors) {
+              badspellings.push(i.bad);
+              suggestions[i.bad] = i.better;
+            }
+            console.log(badspellings);
+            console.log(suggestions);
+
+            let content = display.value;
+
+            let dataval = transformContent(content, badspellings);
+            document.getElementById("display").innerHTML = dataval;
+
+            function transformContent(content, keywords) {
+              let temp = content;
+
+              keywords.forEach((keyword) => {
+                temp = temp.replace(
+                  new RegExp(keyword, "ig"),
+                  `<span style="font-weight: bold; color: red; font-size: 30px">  ${keyword}  </span>`
+                );
+              });
+              console.log(temp);
+              return temp;
+            }
+
+            function wrapKeywordWithHTML(keyword) {
+              return;
+            }
+          };
+        };
+      }
+    </script>
   </body>
-
-  </html>
-  
+</html>
