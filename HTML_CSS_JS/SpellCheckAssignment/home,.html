@@ -12,7 +12,7 @@
     <h1 id="heading"> Spelling Bee</h1>
 
     <div id="main">
-    <input type="text" id="display">
+    <input type="text" id="display" contenteditable="true">
     <br/> 
     <br/>
     <input id="fileInput" type="file"  onchange="displayfile()">
@@ -59,9 +59,27 @@
       }
     console.log(badspellings);
     console.log(suggestions);
-    }
-    }
-    }
+  
+    let content = display.value;
+    document.getElementById('display').innerHTML = transformContent(content, badspellings)
+
+  function transformContent(content, badspellings){ 
+    
+  let temp = content;
+    alert(temp);
+  for(let z of badspellings ){
+    temp = temp.replace(new RegExp(z, 'ig'), wrapKeywordWithHTML(z))
+    console.log(temp)
+    return temp
+  }
+  }
+
+function wrapKeywordWithHTML(z){
+  return `<span style="font-weight: bold; color: red; font-size: 30px">  ${z}  </span> `
+}
+}
+}
+}
 
         
     </script> 
