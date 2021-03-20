@@ -1,0 +1,15 @@
+#main
+{
+  float:right;
+  padding-right: 400px;;
+}
+
+#display{
+  width:500px;
+  height:250px;
+}
+
+#heading
+{
+  text-align:center;
+}
