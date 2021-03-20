@@ -16,6 +16,7 @@
     <br/> 
     <br/>
     <input id="fileInput" type="file"  onchange="displayfile()">
+    <button type="button" id="chkbut" onclick="checkspell()">Check</button>
   </div>
 
     <script type="text/javascript"> 
@@ -25,11 +26,16 @@
                 let file=fileInput.files[0];
                 let reader=new FileReader();
                 reader.readAsText(file);
-                reader.onload=function(){
+                reader.onload=function() {
                   display.value=reader.result;
-                    //document.getElementById("display").textContent=reader.result;
                 }
-                }          
+                }     
+                
+      function checkspell(){
+      if(display.value ==="") 
+      {alert("Please select a file first");}
+        }
+        
     </script> 
    
   </body>
