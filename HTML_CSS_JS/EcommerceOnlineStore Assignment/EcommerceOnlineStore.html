@@ -110,7 +110,7 @@
   </nav>
 
   <div id="allproducts">
-  <div id="tomato" class="container">
+  <div class="container">
     <div class="row">
       <div id="tomato" class="col-sm-4 veggies">
         <div class="panel panel-primary ">
@@ -282,17 +282,18 @@ window.onclick = function(event) {
   }
 };
 
+
 fruits.addEventListener("click", ()=>{
  
   document.getElementById("filterbtn").textContent = "Fruits"
 
-  let i=0, temp;
-  mpn = document.getElementsByClassName("col-sm-4 fruits");
-  for(all in mpn.length){
-    temp = document.getElementById(mpn[i]);
-    console.log(temp);
-    temp.style.display = ""
-    i++;
+ 
+ let mpn = document.getElementsByClassName("col-sm-4 fruits");
+  
+
+  for(let i =0; i < mpn.length; i++){
+    
+    mpn[i].style.display = " "
   }
 });
 
