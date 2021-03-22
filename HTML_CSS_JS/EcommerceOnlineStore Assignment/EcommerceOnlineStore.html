@@ -288,21 +288,43 @@ fruits.addEventListener("click", ()=>{
   document.getElementById("filterbtn").textContent = "Fruits"
 
  
- let mpn = document.getElementsByClassName("col-sm-4 fruits");
-  
+ let mpn = document.getElementsByClassName("col-sm-4");
 
   for(let i =0; i < mpn.length; i++){
-    
-    mpn[i].style.display = " "
+    if(mpn[i].classList.contains("fruits")){
+      mpn[i].style.display ="";
+    }
+   else{
+    mpn[i].style.display = "none";
   }
+}
 });
 
 veggies.addEventListener("click", ()=>{
   document.getElementById("filterbtn").textContent = "Veggies"
+  let mpn = document.getElementsByClassName("col-sm-4");
+
+
+  for(let i =0; i < mpn.length; i++){
+    if(mpn[i].classList.contains("veggies")){
+      mpn[i].style.display ="";
+    }
+   else{
+    mpn[i].style.display = "none";
+  }
+}
 });
 
 all.addEventListener("click", ()=>{
   document.getElementById("filterbtn").textContent = "Filter By Category"
+  let mpn = document.getElementsByClassName("col-sm-4");
+  
+
+  for(let i =0; i < mpn.length; i++){
+    i
+      mpn[i].style.display ="";
+   
+}
 });
 
   </script>
