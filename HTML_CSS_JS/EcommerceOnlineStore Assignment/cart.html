@@ -1,0 +1,35 @@
+<html>
+<title>Your Cart</title>  
+  <body>
+  <button id="clearcart" onclick="clearcart()">Clear Cart data</button>  
+ <table id="cartdisplay" style="text-align: center; border:1px solid; border-color:salmon; margin-left:auto; margin-right:auto; margin-top: 100px; width:500px;">
+   <tr> 
+     <td><h3>Product</h3></td>
+     <td><h3>Quantity</h3></td> 
+   </tr>
+ </table>
+ 
+ <script>
+   
+   for(let i=0; i<localStorage.length; i++){
+    var tr1=document.createElement("tr");
+    var td1=document.createElement("td");
+    var td2=document.createElement("td");
+
+    var td1data = document.createTextNode(localStorage.key(i));
+    var td2data = document.createTextNode(localStorage.getItem(localStorage.key(i)));
+  
+    
+    tr1.append(td1);
+    tr1.append(td2);
+    td1.append(td1data);
+    td2.append(td2data);
+    cartdisplay.append(tr1);
+  }
+
+  function clearcart(){
+    localStorage.clear();
+  }
+ </script>
+  </body>
+</html>
