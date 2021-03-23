@@ -103,7 +103,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+          <li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
         </ul>
       </div>
     </div>
@@ -118,7 +118,7 @@
           <div class="panel-body"><img src="cart Images/tomato.jpg" class="img-responsive"
               style="width:100%; height: 250px;" alt="Image"></div>
           <div class="panel-footer">
-            <button id="tomatoButton" type="button" class="btn btn-primary">Add to Cart</button>
+            <button id="Tomato" type="button" class="btn btn-primary" onclick="addtocart(this.id)">Add to Cart</button>
             <label for="dropdowntomato"  style="margin-top:15px; margin-left:15px; color:whitesmoke">KG</label>
             <select name="category" id="dropdown">
               <option value="onekg">1 kg</option>
@@ -136,7 +136,7 @@
           <div class="panel-body"><img src="cart Images/cucumber.jpg" class="img-responsive"
               style="width:100%;  height: 250px;" alt="Image"></div>
               <div class="panel-footer">
-                <button id="tomatoButton" type="button" class="btn btn-primary">Add to Cart</button>
+                <button id="Cucumber" type="button" class="btn btn-primary" onclick="addtocart(this.id)">Add to Cart</button>
                 <label for="dropdowntomato"  style="margin-top:15px; margin-left:15px; color:whitesmoke">KG</label>
                 <select name="category" id="dropdown">
                   <option value="onekg">1 kg</option>
@@ -155,7 +155,7 @@
           <div class="panel-body"><img src="cart Images/chilli.jpg" class="img-responsive"
               style="width:100%; height: 250px" alt="Image"></div>
               <div class="panel-footer">
-                <button id="chilliButton" type="button" class="btn btn-primary">Add to Cart</button>
+                <button id="Chilli" type="button" class="btn btn-primary" onclick="addtocart(this.id)">Add to Cart</button>
                 <label for="dropdownchilli"  style="margin-top:15px; margin-left:15px; color:whitesmoke">KG</label>
                 <select name="category" id="dropdown">
                   <option value="onekg">1 kg</option>
@@ -179,7 +179,7 @@
           <div class="panel-body"><img src="cart Images/strawbery.jpg" class="img-responsive"
               style="width:100%; height: 250px;" alt="Image"></div>
           <div class="panel-footer">
-            <button id="tomatoButton" type="button" class="btn btn-primary">Add to Cart</button>
+            <button id="Strawberry" type="button" class="btn btn-primary" onclick="addtocart(this.id)">Add to Cart</button>
             <label for="dropdowntomato"  style="margin-top:15px; margin-left:15px; color:whitesmoke">KG</label>
             <select name="category" id="dropdown">
               <option value="onekg">1 kg</option>
@@ -197,7 +197,7 @@
           <div class="panel-body"><img src="cart Images/mango.jpg" class="img-responsive"
               style="width:100%;  height: 250px;" alt="Image"></div>
               <div class="panel-footer">
-                <button id="mangoButton" type="button" class="btn btn-primary">Add to Cart</button>
+                <button id="Mango" type="button" class="btn btn-primary" onclick="addtocart(this.id)">Add to Cart</button>
                 <label for="dropdownmango"  style="margin-top:15px; margin-left:15px; color:whitesmoke">KG</label>
                 <select name="category" id="dropdown">
                   <option value="onekg">1 kg</option>
@@ -215,7 +215,7 @@
           <div class="panel-body"><img src="cart Images/pineapple.jpg" class="img-responsive"
               style="width:100%; height: 250px" alt="Image"></div>
               <div class="panel-footer">
-                <button id="strawberryButton" type="button" class="btn btn-primary">Add to Cart</button>
+                <button id="Pineapple" type="button" class="btn btn-primary" onclick="addtocart(this.id)">Add to Cart</button>
                 <label for="dropdownstrawberry"  style="margin-top:15px; margin-left:15px; color:whitesmoke">KG</label>
                 <select name="category" id="dropdown">
                   <option value="onekg">1 kg</option>
@@ -242,6 +242,8 @@
 </form>    
   </footer>
 
+
+  <!--Functionality of our webpage-->
   <script>
   let history = new Set();
 
@@ -270,6 +272,7 @@ function searchbox(){
     }
 
 };
+
 
 function filtercontents(){
   document.getElementById("drpdown").classList.toggle("show");
@@ -331,6 +334,16 @@ all.addEventListener("click", ()=>{
    
 }
 });
+
+function addtocart(id){
+if(localStorage.getItem(id)==null){
+  localStorage.setItem(id,1);
+  
+}
+else{
+  localStorage.setItem(id,parseInt(localStorage.getItem(id))+1);
+}
+};
 
   </script>
 </body>
