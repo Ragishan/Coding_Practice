@@ -85,7 +85,7 @@
           <li><a href="#">Contact</a></li>
 
           <!--Adding Search box and Category Dropdown-->
-          <li><input type="text" id="searchbox" onkeyup="searchbox()" placeholder="Search" style="margin-top:12px"> </li>
+          <li><input id="searchbox" onkeyup="searchbox()" placeholder="Search" style="margin-top:12px"> </li>
           
           <li>
             
@@ -130,7 +130,7 @@
           </div>
         </div>
       </div>
-      <div id="Cucumber" class="col-sm-4 veggies">
+      <div id="Cucumber" class="col-sm-4   veggies">
         <div class="panel panel-primary">
           <div class="panel-heading">Cucumber</div>
           <div class="panel-body"><img src="cart Images/cucumber.jpg" class="img-responsive"
@@ -149,7 +149,7 @@
       </div>
     </div>
 
-      <div id="Chilli" class="col-sm-4 veggies">
+      <div id="Chilli" class="col-sm-4   veggies">
         <div class="panel panel-primary">
           <div class="panel-heading">Chilli</div>
           <div class="panel-body"><img src="cart Images/chilli.jpg" class="img-responsive"
@@ -173,7 +173,7 @@
 
   <div class="container">
     <div class="row">
-      <div id="strawberry" class="col-sm-4 fruits">
+      <div id="strawberry" class="col-sm-4   fruits">
         <div class="panel panel-primary ">
           <div class="panel-heading">Strawberry </div>
           <div class="panel-body"><img src="cart Images/strawbery.jpg" class="img-responsive"
@@ -191,7 +191,7 @@
           </div>
         </div>
       </div>
-      <div id="mango" class="col-sm-4 fruits">
+      <div id="mango" class="col-sm-4   fruits">
         <div class="panel panel-primary">
           <div class="panel-heading">Mango</div>
           <div class="panel-body"><img src="cart Images/mango.jpg" class="img-responsive"
@@ -209,7 +209,7 @@
       </div>
       </div>
     </div>
-      <div id="pineapple" class="col-sm-4 fruits">
+      <div id="pineapple" class="col-sm-4  fruits">
         <div class="panel panel-primary">
           <div class="panel-heading">Pineapple</div>
           <div class="panel-body"><img src="cart Images/pineapple.jpg" class="img-responsive"
@@ -243,27 +243,33 @@
   </footer>
 
   <script>
-let history = new Set();
+  let history = new Set();
 
 function searchbox(){
-  let pl = document.getElementById("allproducts") // all product list
-  let mpn = document.getElementsByClassName("col-sm-4") // list to match product names 
-  let sq = document.getElementById("searchbox").value //search query
+  var sq = document.getElementById("searchbox").value //search query
   sq = sq.toUpperCase();
-
-  for(let i =0 ; i< mpn.length; i++)
+  var pl = document.getElementById("allproducts") // all product list
+  var mpn = pl.getElementsByClassName("col-sm-4") // list to match product names 
+  console.log(mpn);
+  var i;
   
-    if(mpn[i].id.toUpperCase().indexOf(sq) == 0){
-      mpn[i].style.display =""
+  for(i =0 ; i< mpn.length; i++)
+  //logging history if the search query exactly matches the product name
+  
+  if(mpn[i].id.toUpperCase().indexOf(sq)==0){
+      mpn[i].style.display = ""
 
-    if( sq!=' ' && sq == mpn[i].id.toUpperCase()){
+  if( sq!=' ' && sq === mpn[i].id.toUpperCase()){
     history.add(mpn[i].id);
-    }
-    }
+  }
+}
+  //setting the display even if the sq character occurs in the id of all products in our list 
+  
     else{
-      mpn[i].id.style.display = "No Such Item Found"; 
+      mpn[i].style.display = "none"; 
     }
-  };
+
+};
 
 function filtercontents(){
   document.getElementById("drpdown").classList.toggle("show");
@@ -318,7 +324,6 @@ veggies.addEventListener("click", ()=>{
 all.addEventListener("click", ()=>{
   document.getElementById("filterbtn").textContent = "Filter By Category"
   let mpn = document.getElementsByClassName("col-sm-4");
-  
 
   for(let i =0; i < mpn.length; i++){
     i
