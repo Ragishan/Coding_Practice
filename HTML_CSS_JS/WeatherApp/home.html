@@ -1,0 +1,131 @@
+<html>
+  <title>Weather Buddy</title> 
+  <link rel="favicon" type="png" href="icons/unknown.png"/>
+  <body>
+  <style>
+    *{
+     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+
+   };
+    #main-content{
+      float:center;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 50px;
+
+    };
+  
+</style>
+  </style>
+    <div id="main-content">
+      <p style="text-align: center; font-size: 80px;">Weather in Shimla</p>
+    </div>
+      <div>
+        <table id="displaysection" style="text-align: center;  margin-left:auto; margin-right:auto; margin-top: 100px; width:500px;">
+          <tr> 
+            <td><h4>Temperature 
+                <select name="category" id="dropdown" onchange="changetemp()">
+                  <option value="C">C</option>
+                  <option value="F">F</option>
+                </select>
+            </h4></td>
+            <td><h4>Description</h4></td> 
+          </tr>
+        </table>
+      </div>
+      
+    
+    <button onclick="fetchweather()">Fetch</button>
+ 
+ <script>
+    
+    var temperature,description,iconid, celcius,fahrenheit;
+    var tr1,td1,td2,td1data,td2data;
+
+    function fetchweather(){
+    let key="d7e3a3dd2c9512db2bf1432f1db032c0";
+    let lat="31.1048";
+    let lon="77.1734";
+    let address = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
+
+    let request = new XMLHttpRequest();  //CREATE XMLHTTPREQUEST
+  request.open("GET", address); //OPEN A REQUEST
+  request.send(); //SEND THE REQUEST
+
+  request.onload = ()=>{
+    if(request.status == 200){
+      let resultobj = JSON.parse(request.response); //parsing the results
+      temperature = resultobj.main.temp;
+      celcius = temperature-273.15;
+      
+      tr1=document.createElement("tr");
+      td1=document.createElement("td");
+      td1data = document.createTextNode(celcius);
+      tr1.append(td1);
+      td1.append(td1data);
+      
+
+      fahrenheit = 9/5*(temperature - 273.15) + 32;
+      description = resultobj.weather[0].description;
+      
+      td2=document.createElement("td");
+      td2data = document.createTextNode(description);
+      tr1.append(td2);
+      td2.append(td2data);
+      displaysection.append(tr1);
+
+      iconid = resultobj.weather[0].icon;
+      changeicon();
+    }
+  }
+};
+
+function changeicon(){
+  var link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+link.href = "icons/" + iconid + ".png";
+};
+
+function changetemp(){
+
+  let val = document.getElementById("dropdown");
+  
+  tr1=document.createElement("tr");
+  td1=document.createElement("td");
+  td2=document.createElement("td");
+ 
+ 
+  
+
+  if(val.value === 'C'){
+    document.getElementById("displaysection").deleteRow(1);
+    var td1data = document.createTextNode(celcius);
+    tr1.append(td1);
+    td1.append(td1data);
+    td2=document.createElement("td");
+    td2data = document.createTextNode(description);
+    tr1.append(td2);
+    td2.append(td2data);
+    displaysection.append(tr1);
+  }
+
+  if(val.value === 'F'){
+    document.getElementById("displaysection").deleteRow(1);
+    var td1data = document.createTextNode(fahrenheit);
+    tr1.append(td1);
+    td1.append(td1data);
+    td2=document.createElement("td");
+    td2data = document.createTextNode(description);
+    tr1.append(td2);
+    td2.append(td2data);
+    displaysection.append(tr1);
+  }
+};
+
+  </script>
+  </body>
+</html>
